@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/84095757d5.js" crossorigin="anonymous"></script>
+    <title>Log In Page</title>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="contact-info">
+                    <a href="mailto:info@DocOnClick.com"><i class="fa-solid fa-envelope"></i> info@DocOnClick.com</a>
+                    <a href="tel:+1234567890"><i class="fa-solid fa-phone"></i> +123 456 7890</a>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container">
+                <a href="#" class="logo">
+                    <div class="logo-box">D</div>
+                    <div class="logo-text">DocOnClick</div>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="Home.html">Home</a></li>
+                        <li><a href="About.html">About</a></li>
+                        <li><a href="Services.html">Services</a></li>
+                        <li><a href="Doctors.html">Doctors</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sign Up Form -->
+    <div class="form-container">
+        <h1 class="form-title">Create an account</h1>
+        <p class="form-subtitle">Choose your account type and fill in your details</p>
+        
+        <div class="account-type">
+            <div class="account-type-option active" id="patient-option">Patient</div>
+            <div class="account-type-option" id="doctor-option">Doctor</div>
+        </div>
+        
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="full-name" class="form-label">Full Name</label>
+                <input type="text" id="full-name" class="form-input" placeholder="John Doe" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-input" placeholder="john@example.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            </div>
+            
+            <!-- Doctor specific fields -->
+            <div class="doctor-fields">
+                <div class="form-group">
+                    <label for="license-number" class="form-label">License Number</label>
+                    <input type="text" id="license-number" class="form-input highlight" placeholder="Enter your medical license number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="specialty" class="form-label">Specialty</label>
+                    <select id="specialty" class="form-select highlight">
+                        <option value="" disabled selected>Select your specialty</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="dermatology">Dermatology</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="orthopedics">Orthopedics</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="psychiatry">Psychiatry</option>
+                        <option value="radiology">Radiology</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-input" required pattern=".{6,}" title="Password must be at least 6 characters">
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm-password" class="form-label">Confirm Password</label>
+                <input type="password" id="confirm-password" class="form-input" required>
+            </div>
+            
+            <button type="submit" class="submit-button" id="submit-button">Create Patient Account</button>
+        </form>
+        
+        <div class="login-link">
+            Already have an account? <a href="LogIn.html">Sign in</a>
+        </div>
+    </div>
+
+    <script>
+        const patientOption = document.getElementById('patient-option');
+        const doctorOption = document.getElementById('doctor-option');
+        const doctorFields = document.querySelector('.doctor-fields');
+        const submitButton = document.getElementById('submit-button');
+
+        patientOption.addEventListener('click', function() {
+            patientOption.classList.add('active');
+            doctorOption.classList.remove('active');
+            doctorFields.style.display = 'none';
+            submitButton.textContent = 'Create Patient Account';
+            submitButton.disabled = true; 
+
+            setTimeout(() => {
+                submitButton.disabled = false; 
+            }, 500);
+        });
+
+        doctorOption.addEventListener('click', function() {
+            doctorOption.classList.add('active');
+            patientOption.classList.remove('active');
+            doctorFields.style.display = 'block';
+            submitButton.textContent = 'Create Doctor Account';
+            submitButton.disabled = true;
+
+            setTimeout(() => {
+                submitButton.disabled = false;
+            }, 500);
+        });
+    </script>
+</body>
+</html>
